@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,73 +38,87 @@ namespace Cofee_Shop
             try
             {
                 if (customernameTextBox.Text != "" && contactnumberTextBox.Text != "" && addressTextBox.Text != "" &&
-               orderComboBox.Text != "" && quantityTextBox.Text != "")
+                    orderComboBox.Text != "" && quantityTextBox.Text != "")
                 {
-
-                    name.Add(customernameTextBox.Text);
-                    number.Add(contactnumberTextBox.Text);
-                    address.Add(addressTextBox.Text);
-                    quantity.Add(quantityTextBox.Text);
-                    order.Add(orderComboBox.Text);
-
-                    j = Convert.ToInt32(quantityTextBox.Text);
-                    Quantity.Add(j);
-
-
-                    displayRichTextBox.Text = " ";
-
-                    if (orderComboBox.Text == "Black")
+                    if (number.Contains(contactnumberTextBox.Text))
                     {
-                        AddPrice(j, 120);
-
-                    }
-
-
-                    else if (orderComboBox.Text == "Cold")
-                    {
-                        AddPrice(j, 100);
-
-                    }
-
-                    else if (orderComboBox.Text == "Hot")
-                    {
-                        AddPrice(j, 90);
-                    }
-
-                    else if (orderComboBox.Text == "Regular")
-                    {
-                        AddPrice(j, 80);
+                        MessageBox.Show("Contact No must be Unique");
                     }
                     else
                     {
-                        MessageBox.Show("Please fill the Order option");
+                        name.Add(customernameTextBox.Text);
+                        number.Add(contactnumberTextBox.Text);
+                        address.Add(addressTextBox.Text);
+                        quantity.Add(quantityTextBox.Text);
+                        order.Add(orderComboBox.Text);
+
+                        j = Convert.ToInt32(quantityTextBox.Text);
+                        Quantity.Add(j);
+
+
+                        displayRichTextBox.Text = "";
+
+                        if (orderComboBox.Text == "Black")
+                        {
+                            AddPrice(j, 120);
+
+                        }
+
+
+                        else if (orderComboBox.Text == "Cold")
+                        {
+                            AddPrice(j, 100);
+
+                        }
+
+                        else if (orderComboBox.Text == "Hot")
+                        {
+                            AddPrice(j, 90);
+                        }
+
+                        else if (orderComboBox.Text == "Regular")
+                        {
+                            AddPrice(j, 80);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please fill the Order option");
+                        }
+
+                        displayRichTextBox.SelectedText = Environment.NewLine + "Customer Name :" + name[i];
+                        displayRichTextBox.SelectedText = Environment.NewLine + "Contact Number:" + number[i];
+                        displayRichTextBox.SelectedText = Environment.NewLine + "Address             :" + address[i];
+                        displayRichTextBox.SelectedText = Environment.NewLine + "Order                 :" + order[i];
+                        displayRichTextBox.SelectedText = Environment.NewLine + "Quantity            :" + quantity[i];
+                        displayRichTextBox.SelectedText =
+                            Environment.NewLine + "Price                 :" + price[i] + "Tk.";
+                        displayRichTextBox.SelectedText = Environment.NewLine + " ";
+
+                        MessageBox.Show("All data is saved");
+                        customernameTextBox.Text = "";
+                        contactnumberTextBox.Text = "";
+                        addressTextBox.Text = "";
+                        orderComboBox.Text = "";
+                        quantityTextBox.Text = "";
+
+                        i++;
+
+
+
+
+
+                }    }
+                
+
+                else
+                    {
+                        MessageBox.Show("Please fillup all options");
+
                     }
 
-                    displayRichTextBox.SelectedText = Environment.NewLine + "Customer Name :" + name[i];
-                    displayRichTextBox.SelectedText = Environment.NewLine + "Contact Number:" + number[i];
-                    displayRichTextBox.SelectedText = Environment.NewLine + "Address             :" + address[i];
-                    displayRichTextBox.SelectedText = Environment.NewLine + "Order                 :" + order[i];
-                    displayRichTextBox.SelectedText = Environment.NewLine + "Quantity            :" + quantity[i];
-                    displayRichTextBox.SelectedText = Environment.NewLine + "Price                 :" + price[i] + "Tk.";
-                    displayRichTextBox.SelectedText = Environment.NewLine + " ";
-
-                    MessageBox.Show("All data is saved");
-
-                }
-                else
-                {
-                    MessageBox.Show("Please fillup all options");
-
-                }
 
 
-                customernameTextBox.Text = "";
-                contactnumberTextBox.Text = "";
-                addressTextBox.Text = "";
-                orderComboBox.Text = "";
-                quantityTextBox.Text = "";
-
-                i++;
+                
 
             }
             catch (Exception Ex)
@@ -112,7 +126,7 @@ namespace Cofee_Shop
                 MessageBox.Show(Ex.Message);
                 return;
             }
-           
+
         }
 
         private void AddPrice(int quan, int ord)
